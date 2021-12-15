@@ -2,6 +2,7 @@ package com.example.mvvmpattern.di
 
 import com.example.mvvmpattern.repository.DatabaseRepository
 import com.example.mvvmpattern.viewmodel.DataShowViewModel
+import com.example.mvvmpattern.viewmodel.MemoActivityViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module // dsl : domain specific language
@@ -13,6 +14,7 @@ import org.koin.dsl.module // dsl : domain specific language
  */
 val viewModelModules = module {
     viewModel { DataShowViewModel(get()) }
+    viewModel { MemoActivityViewModel(get()) }
 }
 
 val repository = module {

@@ -21,6 +21,9 @@
         <activity
             android:name=".view.DataShowActivity"
             android:theme="@style/Theme.MvvmPattern" />
+        <activity
+            android:name=".view.MemoActivity"
+            android:theme="@style/Theme.MvvmPattern" />
     </application>
 
 </manifest>
