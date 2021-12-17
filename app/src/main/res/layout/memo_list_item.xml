@@ -15,12 +15,19 @@
 
         <variable
             name="data"
-            type="com.example.mvvmpattern.model.MemoListModel" />
+            type="com.example.mvvmpattern.entity.Memo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/memo_item"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/memo_item"
+        android:padding="10dp"
         tools:context=".MainActivity">
 
         <TextView
@@ -34,7 +41,7 @@
             android:textColor="#000"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="title" />
 
@@ -50,8 +57,25 @@
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
             tools:text="date" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="check_box, memo_item"
+            app:layout_constraintEnd_toEndOf="@+id/check_box"/>
+
+        <CheckBox
+            android:id="@+id/check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/memo_item"
+            app:layout_constraintStart_toStartOf="@+id/memo_item"
+            app:layout_constraintTop_toTopOf="@+id/memo_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

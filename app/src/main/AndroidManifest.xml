@@ -24,6 +24,9 @@
         <activity
             android:name=".view.MemoActivity"
             android:theme="@style/Theme.MvvmPattern" />
+        <activity
+            android:name=".view.MemoEditPageActivity"
+            android:theme="@style/Theme.MvvmPattern" />
     </application>
 
 </manifest>

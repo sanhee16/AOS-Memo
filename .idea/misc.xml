@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MvvmPattern/app/src/main/res/drawable/memo_item.xml" value="0.3567708333333333" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_data_show.xml" value="0.22" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo.xml" value="0.25" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo.xml" value="0.33" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.22" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_list_page.xml" value="0.5276041666666667" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_show_page.xml" value="0.25" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/fragment_memo_edit_page.xml" value="0.25" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/fragment_memo_list_page.xml" value="0.39945652173913043" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_add.xml" value="0.3078125" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_edit_page.xml" value="0.37395833333333334" />
-        <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_list_item.xml" value="0.22" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_list_item.xml" value="0.67" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_list_page.xml" value="0.5276041666666667" />
       </map>
     </option>
   </component>

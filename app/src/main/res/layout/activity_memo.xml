@@ -19,51 +19,62 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/memo_list_recycler"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/guide_top"-->
+        <!--            app:layout_constraintVertical_bias="0.0"-->
+        <!--            tools:layout_editor_absoluteX="54dp" />-->
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/add"
+            android:backgroundTint="@color/buttonColor"
             android:gravity="center"
-            android:text="MEMO"
-            android:textSize="30dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->vm.onClickAddBtn()}"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_top"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:background="@drawable/delete"
+            android:backgroundTint="@color/buttonColor"
+            android:gravity="center"
+            android:onClick="@{()->vm.onClickDeleteBtn()}"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_top"
+            app:layout_constraintEnd_toEndOf="@+id/guide_right"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/memo_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="54dp" />
-
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:onClick="@{()->vm.addMemoList()}"
-            android:text="+"
-            android:textColor="#FFF"
-            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/memo_list_recycler"
-            app:layout_constraintEnd_toEndOf="@+id/memo_list_recycler"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title">
+            app:layout_constraintTop_toBottomOf="@id/guide_top" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
 
-
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

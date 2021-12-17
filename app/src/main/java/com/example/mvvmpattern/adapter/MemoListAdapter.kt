@@ -1,17 +1,22 @@
 package com.example.mvvmpattern.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mvvmpattern.model.MemoListModel
 import com.example.mvvmpattern.databinding.MemoListItemBinding
+import com.example.mvvmpattern.entity.Memo
+import com.example.mvvmpattern.viewmodel.MemoActivityViewModel
+
 /*
 viewholder = view를 가지고 있는 것
 
  */
-class MemoListAdapter(private var data: MutableList<MemoListModel>) :
+class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivityViewModel) :
     RecyclerView.Adapter<MemoListAdapter.ViewHolder>() {
+
     /*
     두번째로 실행, viewHolder를 할당한다.
     뷰 홀더는 실제 레이아웃 파일과 매핑되어야 함.
@@ -28,27 +33,37 @@ class MemoListAdapter(private var data: MutableList<MemoListModel>) :
     // binding ? 프로그램에 사용된 구성 요소의 실제 "값" 또는 프로퍼티를 결정짓는 행위
     override fun onBindViewHolder(holder: MemoListAdapter.ViewHolder, position: Int) {
         holder.b.data = data[position]
+        holder.b.checkBox.visibility = View.GONE
+        holder.b.memoItem.setOnClickListener { vm.onClickItem(data[position].id) }
     }
 
     // 가장 먼저 실행되는 함수 - data의 개수 반환
     override fun getItemCount() = data.size
 
-    fun setData(item: MutableList<MemoListModel>) {
+    fun setData(item: List<Memo>) {
         val diffResult = DiffUtil.calculateDiff(DiffCallback(this.data, item))
         this.data = item
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class ViewHolder(val b: MemoListItemBinding) : RecyclerView.ViewHolder(b.root)
+    fun showCheckbox() {
+        // TODO: 2021-12-17 체크박스 어떻게 나오게 할 것인지?
+        // 모든 item 의 체크박스가 나와야 한다.
+    }
 
+    fun hideCheckbox() {
+
+    }
+
+    class ViewHolder(val b: MemoListItemBinding) : RecyclerView.ViewHolder(b.root)
     /*
     diffUtil
     oldData, newData 가 있을 때 + 두 리스트에 있는 아이템들이 다를 때 새로운 아이템으로 업데이트 해준다.
     main thread를 block 하지 않고 background에서 "계산"한다.
      */
     class DiffCallback(
-        private val oldData: MutableList<MemoListModel>,
-        private val newData: MutableList<MemoListModel>
+        private val oldData: List<Memo>,
+        private val newData: List<Memo>
     ) : DiffUtil.Callback() {
         override fun getOldListSize() = oldData.size
 
