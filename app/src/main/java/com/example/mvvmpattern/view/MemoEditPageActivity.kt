@@ -10,6 +10,9 @@ import com.example.mvvmpattern.Constants
 import com.example.mvvmpattern.R
 import com.example.mvvmpattern.databinding.ActivityMemoEditPageBinding
 import com.example.mvvmpattern.entity.Memo
+import com.example.mvvmpattern.util.DialogType1
+import com.example.mvvmpattern.viewmodel.BaseViewModel
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
 import com.example.mvvmpattern.viewmodel.MemoEditViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -45,6 +48,10 @@ class MemoEditPageActivity : BaseActivity() {
                 when (event) {
                     SHOW_MEMO_LIST -> {
                         startActivityWithFinish<MemoActivity>()
+                    }
+                    SHOW_DIALOG -> {
+                        val dlg = DialogType1(this)
+                        dlg.start("저장하지 않고 나가기")
                     }
                 }
             }

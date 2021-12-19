@@ -17,7 +17,7 @@ class MemoEditViewModel(
     val title = mutableLiveData("")
     val content = mutableLiveData("")
 
-    private var memo: Memo = Memo("","", getCurrentTime())
+    private var memo: Memo = Memo("", "", getCurrentTime())
     fun onClickSaveBtn() {
         memo.title = title.value.toString()
         memo.content = content.value.toString()
@@ -37,6 +37,7 @@ class MemoEditViewModel(
         }
     }
 
+    fun onClickBackBtn() = viewEvent(SHOW_DIALOG)
     val isSaveButtonEnabled = mediatorLiveData(title) {
         !title.value.isNullOrEmpty()
     }
