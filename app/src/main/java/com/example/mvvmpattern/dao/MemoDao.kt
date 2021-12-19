@@ -30,6 +30,9 @@ interface MemoDao {
     @Delete
     fun delete(todo: Memo)
 
+    @Query("DELETE FROM Memo WHERE id = :id")
+    fun deleteFromId(id: Int)
+
     @Query("SELECT * FROM Memo WHERE id = :id")
     fun getItem(id: Int) : Memo
 }

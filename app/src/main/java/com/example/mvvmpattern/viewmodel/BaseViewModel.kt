@@ -16,6 +16,9 @@ open class BaseViewModel : ViewModel() {
         const val SHOW_MEMO_LIST = "SHOW_MEMO_LIST"
         const val MAKE_NEW_MEMO = "MAKE_NEW_MEMO"
         const val MAKE_EDIT_MEMO = "MAKE_EDIT_MEMO"
+        const val SHOW_PROGRESS_BAR = "SHOW_PROGRESS_BAR"
+        const val HIDE_PROGRESS_BAR = "HIDE_PROGRESS_BAR"
+        const val SHOW_DIALOG = "SHOW_DIALOG"
     }
 
     fun viewEvent(content: Any) {
@@ -24,4 +27,9 @@ open class BaseViewModel : ViewModel() {
 
     fun getCurrentTime(): String =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+
+    fun showProgressBar() = viewEvent(SHOW_PROGRESS_BAR)
+
+    fun hideProgressBar() = viewEvent(HIDE_PROGRESS_BAR)
+
 }

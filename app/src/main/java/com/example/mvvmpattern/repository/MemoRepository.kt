@@ -39,4 +39,8 @@ class MemoRepository(application: Application) {
     fun getItem(id: Int) : Memo {
         return memoDao.getItem(id)
     }
+
+    fun deleteFromId(id: Int){
+        return memoDao.deleteFromId(id)
+    }
 }

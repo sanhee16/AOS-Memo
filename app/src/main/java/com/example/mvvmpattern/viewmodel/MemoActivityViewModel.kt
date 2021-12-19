@@ -17,24 +17,38 @@ class MemoActivityViewModel(
 ) : BaseViewModel() {
     // MutableLiveData : get()/set() 가능
     private val _item = MutableLiveData<Int>()
+    private val _isEditMode = MutableLiveData<Boolean>()
 
     // liveData : get() 만 가능
-    val memoList = memoRepository.getAll()
+    var memoList = memoRepository.getAll()
     val item: LiveData<Int> get() = _item
+    val isEditMode: LiveData<Boolean> get() = _isEditMode
 
-    companion object {
-        const val SHOW_CHECK_BOX = "SHOW_CHECK_BOX"
-    }
+    private var checkList: MutableList<Int> = mutableListOf()
+
     init {
-        viewEvent(SHOW_MEMO_LIST)
     }
 
     // MemoEditPage fragment 띄우기
-    fun onClickAddBtn() = viewEvent(MAKE_NEW_MEMO)
-
+//    fun onClickAddBtn() = viewEvent(MAKE_NEW_MEMO)
+    fun onClickAddBtn() = viewEvent(SHOW_DIALOG)
     fun onClickDeleteBtn() {
-        // 체크박스 띄우도록 해야지
-        viewEvent(SHOW_CHECK_BOX)
+        // check 된거 delete
+        // adapter 에 checkList 에 id목록 있음 : 어떻게 가져올 건지?
+        showProgressBar()
+        CoroutineScope(Dispatchers.IO).launch {
+            for (i in checkList) {
+                memoRepository.deleteFromId(i)
+            }
+            memoList = memoRepository.getAll()
+        }
+        dismissEditMode()
+        hideProgressBar()
+    }
+
+    fun onClickBackBtn() {
+        checkList.clear()
+        dismissEditMode()
     }
 
     fun onClickItem(id: Int) {
@@ -42,5 +56,11 @@ class MemoActivityViewModel(
         viewEvent(MAKE_EDIT_MEMO)
     }
 
+    fun setEditMode() = _isEditMode.postValue(true)
+    private fun dismissEditMode() = _isEditMode.postValue(false)
+
+    fun getCheckList(list: MutableList<Int>) {
+        checkList = list
+    }
 
 }

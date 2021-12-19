@@ -2,6 +2,8 @@ package com.example.mvvmpattern.view
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmpattern.BaseActivity
@@ -9,8 +11,15 @@ import com.example.mvvmpattern.Constants
 import com.example.mvvmpattern.R
 import com.example.mvvmpattern.adapter.MemoListAdapter
 import com.example.mvvmpattern.databinding.ActivityMemoBinding
+import com.example.mvvmpattern.databinding.MemoListItemBinding
 import com.example.mvvmpattern.entity.Memo
+import com.example.mvvmpattern.util.DialogType1
+import com.example.mvvmpattern.viewmodel.BaseViewModel
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.HIDE_PROGRESS_BAR
 import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.MAKE_NEW_MEMO
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_PROGRESS_BAR
 import com.example.mvvmpattern.viewmodel.MemoActivityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,14 +42,25 @@ class MemoActivity : BaseActivity() {
 
         b.memoListRecycler.layoutManager = LinearLayoutManager(this)
         b.memoListRecycler.adapter = adapter
+        // itemLongClickListener 구현해서 listener 넣기
+//        adapter.setOnItemLongClickListener(object : MemoListAdapter.OnItemLongClickListener {
+//            override fun onLongClick(memoBinding: MemoListItemBinding, data: Memo) {
+//            }
+//        })
     }
 
     private fun observeLiveData() {
-        vm.memoList.observe(this, { adapter.setData(it) })
+        vm.memoList.observe(this, {
+            adapter.setIsEditMode(false)
+            adapter.setData(it)
+        })
+        vm.isEditMode.observe(this, {
+            b.isEditMode = it
+            adapter.setIsEditMode(it)
+        })
         vm.item.observe(this, {
             val bundle = Bundle()
             bundle.putInt(Constants.SEND_ID, it)
-            Log.v("sandy","get it $bundle")
             startActivityWithFinish<MemoEditPageActivity>(bundle)
         })
         vm.viewEvent.observe(this, {
@@ -49,8 +69,15 @@ class MemoActivity : BaseActivity() {
                     MAKE_NEW_MEMO -> {
                         startActivityWithFinish<MemoEditPageActivity>()
                     }
-                    MemoActivityViewModel.SHOW_CHECK_BOX -> {
-                        adapter.showCheckbox()
+                    SHOW_PROGRESS_BAR -> {
+                        b.progressBar.showProgress()
+                    }
+                    HIDE_PROGRESS_BAR -> {
+                        b.progressBar.hideProgress()
+                    }
+                    SHOW_DIALOG -> {
+                        val dlg = DialogType1(this)
+                        dlg.start("다이얼로그 테스트")
                     }
                 }
             }

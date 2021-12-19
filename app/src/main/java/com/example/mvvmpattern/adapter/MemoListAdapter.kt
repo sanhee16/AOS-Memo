@@ -1,9 +1,9 @@
 package com.example.mvvmpattern.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmpattern.databinding.MemoListItemBinding
@@ -16,6 +16,8 @@ viewholder = view를 가지고 있는 것
  */
 class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivityViewModel) :
     RecyclerView.Adapter<MemoListAdapter.ViewHolder>() {
+    var isEditMode = false
+    var checkList: MutableList<Int> = mutableListOf()
 
     /*
     두번째로 실행, viewHolder를 할당한다.
@@ -24,21 +26,61 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoListAdapter.ViewHolder {
         val b = MemoListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         // viewholder가 이 return 을 받는다.
         return MemoListAdapter.ViewHolder(b) // viewHolder 객체 생성
     }
 
     // 생성된 뷰홀더에 데이터를 바인딩 해주는 함수
     // binding ? 프로그램에 사용된 구성 요소의 실제 "값" 또는 프로퍼티를 결정짓는 행위
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MemoListAdapter.ViewHolder, position: Int) {
         holder.b.data = data[position]
-        holder.b.checkBox.visibility = View.GONE
-        holder.b.memoItem.setOnClickListener { vm.onClickItem(data[position].id) }
+        holder.b.checkBox.visibility = if (isEditMode) View.VISIBLE else View.GONE
+        holder.b.checkBox.isChecked = checkList.indexOf(data[position].id) > -1
+
+        holder.itemView.setOnClickListener {
+            if (isEditMode) {
+                holder.b.checkBox.isChecked = !holder.b.checkBox.isChecked
+                setCheckList(holder.b.checkBox.isChecked, position)
+            } else {
+                vm.onClickItem(data[position].id)
+            }
+        }
+        holder.itemView.setOnLongClickListener {
+            if (!isEditMode) {
+                setIsEditMode(true)
+                holder.b.checkBox.isChecked = true
+                setCheckList(holder.b.checkBox.isChecked, position)
+                vm.setEditMode()
+            }
+//            itemLongClickListener.onLongClick(holder.b, data[position])
+            true
+        }
+    }
+
+    fun setCheckList(flag: Boolean, position: Int) {
+        if (flag) {
+            checkList.add(data[position].id)
+        } else {
+            if (checkList.indexOf(data[position].id) > -1) checkList.remove(data[position].id)
+        }
+        vm.getCheckList(checkList)
     }
 
     // 가장 먼저 실행되는 함수 - data의 개수 반환
     override fun getItemCount() = data.size
+
+
+    // interface 생성
+    interface OnItemLongClickListener {
+        fun onLongClick(b: MemoListItemBinding, data: Memo)
+    }
+
+    private lateinit var itemLongClickListener: OnItemLongClickListener
+    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener
+    }
+
 
     fun setData(item: List<Memo>) {
         val diffResult = DiffUtil.calculateDiff(DiffCallback(this.data, item))
@@ -46,16 +88,14 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun showCheckbox() {
-        // TODO: 2021-12-17 체크박스 어떻게 나오게 할 것인지?
-        // 모든 item 의 체크박스가 나와야 한다.
-    }
-
-    fun hideCheckbox() {
-
+    @SuppressLint("NotifyDataSetChanged")
+    fun setIsEditMode(isEditMode: Boolean) {
+        this.isEditMode = isEditMode
+        this.notifyDataSetChanged()
     }
 
     class ViewHolder(val b: MemoListItemBinding) : RecyclerView.ViewHolder(b.root)
+
     /*
     diffUtil
     oldData, newData 가 있을 때 + 두 리스트에 있는 아이템들이 다를 때 새로운 아이템으로 업데이트 해준다.
