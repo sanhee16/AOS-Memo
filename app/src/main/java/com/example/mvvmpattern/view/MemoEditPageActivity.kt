@@ -9,6 +9,7 @@ import com.example.mvvmpattern.BaseActivity
 import com.example.mvvmpattern.Constants
 import com.example.mvvmpattern.R
 import com.example.mvvmpattern.databinding.ActivityMemoEditPageBinding
+import com.example.mvvmpattern.di.util
 import com.example.mvvmpattern.entity.Memo
 import com.example.mvvmpattern.util.DialogType1
 import com.example.mvvmpattern.viewmodel.BaseViewModel
@@ -32,6 +33,7 @@ class MemoEditPageActivity : BaseActivity() {
         }
         initDataBinding()
         observeLiveData()
+
     }
 
 
@@ -52,6 +54,15 @@ class MemoEditPageActivity : BaseActivity() {
                     SHOW_DIALOG -> {
                         val dlg = DialogType1(this)
                         dlg.start("저장하지 않고 나가기")
+                        dlg.setClickListener(object: DialogType1.OnClickListener {
+                            override fun onConfirmClick() {
+                                dlg.dismiss()
+                                startActivityWithFinish<MemoActivity>()
+                            }
+                            override fun onClickCancel() {
+                                dlg.dismiss()
+                            }
+                        })
                     }
                 }
             }

@@ -72,14 +72,14 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
 
 
     // interface 생성
-    interface OnItemLongClickListener {
-        fun onLongClick(b: MemoListItemBinding, data: Memo)
-    }
-
-    private lateinit var itemLongClickListener: OnItemLongClickListener
-    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
-        this.itemLongClickListener = itemLongClickListener
-    }
+//    interface OnItemLongClickListener {
+//        fun onLongClick(b: MemoListItemBinding, data: Memo)
+//    }
+//
+//    private lateinit var itemLongClickListener: OnItemLongClickListener
+//    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
+//        this.itemLongClickListener = itemLongClickListener
+//    }
 
 
     fun setData(item: List<Memo>) {

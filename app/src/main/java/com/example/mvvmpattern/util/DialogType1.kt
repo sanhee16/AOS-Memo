@@ -25,14 +25,22 @@ class DialogType1(context: Context) {
 
         btnConfirm.setOnClickListener {
             // TODO: 2021-12-20  change : https://dkfk2747.tistory.com/22 activity에서 처리할 수 있게 변경해야 함 
-            Log.v("sandy", "confirm")
 //            dialog.dismiss()
+            listener.onConfirmClick()
         }
         btnCancel.setOnClickListener {
-            Log.v("sandy", "cancel")
-            dialog.dismiss()
+            listener.onClickCancel()
         }
         dialog.show()
     }
+    fun dismiss() = dialog.dismiss()
 
+    interface OnClickListener {
+        fun onConfirmClick()
+        fun onClickCancel()
+    }
+    private lateinit var listener: OnClickListener
+    fun setClickListener(listener: OnClickListener) {
+        this.listener = listener
+    }
 }
