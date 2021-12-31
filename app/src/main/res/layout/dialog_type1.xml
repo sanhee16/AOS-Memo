@@ -14,8 +14,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:minHeight="150dp"
-        android:background="@drawable/dialog_background">
+        android:background="@drawable/dialog_background"
+        android:minHeight="150dp">
 
         <TextView
             android:id="@+id/text_message"
@@ -24,7 +24,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
+            android:fontFamily="@font/notosan_regular"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:maxWidth="250dp"
             android:textSize="@dimen/dialog_message_text_size"
             app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
@@ -40,12 +42,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
+            android:fontFamily="@font/notosan_medium"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:text="취소"
             android:textColor="@color/purple_700"
             android:textSize="@dimen/dialog_btn_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/btn_confirm"
@@ -54,7 +58,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
+            android:fontFamily="@font/notosan_medium"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:text="확인"
             android:textColor="@color/purple_700"
             android:textSize="@dimen/dialog_btn_text_size"
