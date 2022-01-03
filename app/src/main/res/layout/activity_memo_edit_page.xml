@@ -25,9 +25,10 @@
             android:layout_height="0dp"
             android:background="#e6f9ff"
             android:ems="10"
+            android:enabled="@{vm.editEnabled}"
             android:fontFamily="@font/notosan_medium"
             android:includeFontPadding="false"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:padding="5dp"
             android:text="@={vm.title}"
             android:textColor="#000"
@@ -44,18 +45,34 @@
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
             android:ems="10"
+            android:enabled="@{vm.editEnabled}"
             android:fontFamily="@font/notosan_regular"
             android:gravity="top"
             android:includeFontPadding="false"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:text="@={vm.content}"
             android:textColor="#262626"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="context" />
+
+        <Button
+            android:id="@+id/btn_mode"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginEnd="10dp"
+            android:background="@{vm.mode ? @drawable/read_mode : @drawable/edit_mode}"
+            android:backgroundTint="@color/buttonColor"
+            android:onClick="@{()->vm.changeMode()}"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_top"
+            app:layout_constraintEnd_toStartOf="@+id/btn_save"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_save"
@@ -116,5 +133,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.02" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -20,11 +20,11 @@
         <entry key="..\:/dev/mvvm/app/src/main/res/drawable/dialogue_background.xml" value="0.2796875" />
         <entry key="..\:/dev/mvvm/app/src/main/res/font/font.xml" value="0.20185185185185187" />
         <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_data_show.xml" value="0.36614583333333334" />
-        <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_main.xml" value="0.1279128672745694" />
+        <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_memo.xml" value="0.22" />
-        <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.25" />
+        <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.6004119464469619" />
         <entry key="..\:/dev/mvvm/app/src/main/res/layout/activity_memo_show_page.xml" value="0.2635416666666667" />
-        <entry key="..\:/dev/mvvm/app/src/main/res/layout/dialog_type1.xml" value="0.2" />
+        <entry key="..\:/dev/mvvm/app/src/main/res/layout/dialog_type1.xml" value="0.33" />
         <entry key="..\:/dev/mvvm/app/src/main/res/layout/memo_list_item.xml" value="0.2" />
       </map>
     </option>

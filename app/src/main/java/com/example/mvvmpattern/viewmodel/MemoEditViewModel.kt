@@ -7,7 +7,6 @@ import com.example.mvvmpattern.entity.Memo
 import com.example.mvvmpattern.repository.MemoRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MemoEditViewModel(
@@ -17,7 +16,11 @@ class MemoEditViewModel(
     val title = mutableLiveData("")
     val content = mutableLiveData("")
 
+    var mode = mutableLiveData(true)
     private var memo: Memo = Memo("", "", getCurrentTime())
+    val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
+    var editEnabled = mediatorLiveData(mode) { !mode.value!! }
+
     fun onClickSaveBtn() {
         memo.title = title.value.toString()
         memo.content = content.value.toString()
@@ -35,10 +38,9 @@ class MemoEditViewModel(
             content.postValue(memo.content)
             title.postValue(memo.title)
         }
+        editEnabled.postValue(false)
     }
 
     fun onClickBackBtn() = viewEvent(SHOW_DIALOG)
-    val isSaveButtonEnabled = mediatorLiveData(title) {
-        !title.value.isNullOrEmpty()
-    }
+    fun changeMode() = mode.postValue(!mode.value!!)
 }
