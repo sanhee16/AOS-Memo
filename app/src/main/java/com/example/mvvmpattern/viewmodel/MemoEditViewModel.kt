@@ -1,5 +1,6 @@
 package com.example.mvvmpattern.viewmodel
 
+import android.media.JetPlayer
 import android.util.Log
 import com.example.mvvmpattern.common.mediatorLiveData
 import com.example.mvvmpattern.common.mutableLiveData
@@ -12,10 +13,9 @@ import kotlinx.coroutines.launch
 class MemoEditViewModel(
     private val memoRepository: MemoRepository
 ) : BaseViewModel() {
-    // from view
     val title = mutableLiveData("")
     val content = mutableLiveData("")
-
+    private var isChange = false
     var mode = mutableLiveData(true)
     private var memo: Memo = Memo("", "", getCurrentTime())
     val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
@@ -41,6 +41,12 @@ class MemoEditViewModel(
         editEnabled.postValue(false)
     }
 
-    fun onClickBackBtn() = viewEvent(SHOW_DIALOG)
+    fun onClickBackBtn() {
+        if (isChange)
+            viewEvent(SHOW_DIALOG)
+        else
+            viewEvent(SHOW_MEMO_LIST)
+    }
+
     fun changeMode() = mode.postValue(!mode.value!!)
 }

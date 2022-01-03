@@ -12,7 +12,6 @@
         <variable
             name="act"
             type="com.example.mvvmpattern.view.MemoEditPageActivity" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

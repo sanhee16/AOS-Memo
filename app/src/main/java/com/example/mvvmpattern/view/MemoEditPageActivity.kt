@@ -32,6 +32,11 @@ class MemoEditPageActivity : BaseActivity() {
         b.vm = this.vm
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        vm.onClickBackBtn()
+    }
+
     private fun observeLiveData() {
         // todo 저장이 끝나면 나가도록 수정하기
         vm.viewEvent.observe(this, {
