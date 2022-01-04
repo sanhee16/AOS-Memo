@@ -9,6 +9,7 @@ import com.example.mvvmpattern.databinding.ActivityMemoEditPageBinding
 import com.example.mvvmpattern.util.DialogType1
 import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
+import com.example.mvvmpattern.viewmodel.BaseViewModel.Companion.SHOW_TOAST
 import com.example.mvvmpattern.viewmodel.MemoEditViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,7 +39,6 @@ class MemoEditPageActivity : BaseActivity() {
     }
 
     private fun observeLiveData() {
-        // todo 저장이 끝나면 나가도록 수정하기
         vm.viewEvent.observe(this, {
             it.getContentIfNotHandled()?.let { event ->
                 when (event) {
@@ -58,6 +58,9 @@ class MemoEditPageActivity : BaseActivity() {
                                 dlg.dismiss()
                             }
                         })
+                    }
+                    SHOW_TOAST -> {
+                        showToast("저장했습니다.")
                     }
                 }
             }
