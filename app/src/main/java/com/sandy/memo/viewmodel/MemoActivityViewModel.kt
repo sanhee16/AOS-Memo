@@ -18,6 +18,7 @@ class MemoActivityViewModel(
     var memoList = memoRepository.getAll()
     val item: LiveData<Int> get() = _item
     val isEditMode: LiveData<Boolean> get() = _isEditMode
+    var notificationList = memoRepository.getPinList()
 
     private var checkList: MutableList<Int> = mutableListOf()
 
@@ -37,6 +38,7 @@ class MemoActivityViewModel(
                 memoRepository.deleteFromId(i)
             }
             memoList = memoRepository.getAll()
+            notificationList = memoRepository.getPinList()
         }
         dismissEditMode()
         hideProgressBar()
@@ -57,6 +59,13 @@ class MemoActivityViewModel(
 
     fun getCheckList(list: MutableList<Int>) {
         checkList = list
+    }
+
+    // set notifications
+    fun setNotification() {
+        CoroutineScope(Dispatchers.IO).launch {
+            notificationList = memoRepository.getPinList()
+        }
     }
 
 }

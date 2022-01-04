@@ -42,4 +42,8 @@ class MemoRepository(application: Application) {
     fun updatePin(id: Int, pin: Boolean) {
         memoDao.updatePin(id, pin)
     }
+
+    fun getPinList() : LiveData<List<Memo>> {
+        return memoDao.getPinList()
+    }
 }

@@ -1,6 +1,7 @@
 package com.sandy.memo.view
 
 import android.os.Bundle
+import androidx.core.app.NotificationCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sandy.memo.BaseActivity
@@ -43,6 +44,12 @@ class MemoActivity : BaseActivity() {
             adapter.setIsEditMode(false)
             adapter.setData(it)
         })
+        vm.notificationList.observe(this, { list ->
+            cancelNotificationAll()
+            for (item in list) {
+                makeNotification(item.id, item.title, item.content)
+            }
+        })
         vm.isEditMode.observe(this, {
             b.isEditMode = it
             adapter.setIsEditMode(it)
@@ -72,6 +79,7 @@ class MemoActivity : BaseActivity() {
                                 dlg.dismiss()
                                 vm.deleteMemo()
                             }
+
                             override fun onClickCancel() {
                                 dlg.dismiss()
                             }

@@ -38,4 +38,7 @@ interface MemoDao {
 
     @Query("UPDATE Memo SET pin = :pin WHERE id = :id")
     fun updatePin(id: Int, pin: Boolean)
+
+    @Query("SELECT * FROM Memo WHERE pin = 1")
+    fun getPinList() : LiveData<List<Memo>>
 }

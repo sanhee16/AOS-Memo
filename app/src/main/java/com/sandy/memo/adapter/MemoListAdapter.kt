@@ -10,10 +10,6 @@ import com.sandy.memo.databinding.MemoListItemBinding
 import com.sandy.memo.entity.Memo
 import com.sandy.memo.viewmodel.MemoActivityViewModel
 
-/*
-viewholder = view를 가지고 있는 것
-
- */
 class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivityViewModel) :
     RecyclerView.Adapter<MemoListAdapter.ViewHolder>() {
     var isEditMode = false
@@ -35,6 +31,10 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MemoListAdapter.ViewHolder, position: Int) {
         holder.b.data = data[position]
+        if (data[position].pin)
+            holder.b.imagePin.visibility = View.VISIBLE
+        else
+            holder.b.imagePin.visibility = View.GONE
         holder.b.checkBox.visibility = if (isEditMode) View.VISIBLE else View.GONE
         holder.b.checkBox.isChecked = checkList.indexOf(data[position].id) > -1
 
@@ -53,12 +53,11 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
                 setCheckList(holder.b.checkBox.isChecked, position)
                 vm.setEditMode()
             }
-//            itemLongClickListener.onLongClick(holder.b, data[position])
             true
         }
     }
 
-    fun setCheckList(flag: Boolean, position: Int) {
+    private fun setCheckList(flag: Boolean, position: Int) {
         if (flag) {
             checkList.add(data[position].id)
         } else {
@@ -69,18 +68,6 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
 
     // 가장 먼저 실행되는 함수 - data의 개수 반환
     override fun getItemCount() = data.size
-
-
-    // interface 생성
-//    interface OnItemLongClickListener {
-//        fun onLongClick(b: MemoListItemBinding, data: Memo)
-//    }
-//
-//    private lateinit var itemLongClickListener: OnItemLongClickListener
-//    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
-//        this.itemLongClickListener = itemLongClickListener
-//    }
-
 
     fun setData(item: List<Memo>) {
         val diffResult = DiffUtil.calculateDiff(DiffCallback(this.data, item))
@@ -96,11 +83,6 @@ class MemoListAdapter(private var data: List<Memo>, private val vm: MemoActivity
 
     class ViewHolder(val b: MemoListItemBinding) : RecyclerView.ViewHolder(b.root)
 
-    /*
-    diffUtil
-    oldData, newData 가 있을 때 + 두 리스트에 있는 아이템들이 다를 때 새로운 아이템으로 업데이트 해준다.
-    main thread를 block 하지 않고 background에서 "계산"한다.
-     */
     class DiffCallback(
         private val oldData: List<Memo>,
         private val newData: List<Memo>

@@ -48,7 +48,7 @@
             android:fontFamily="@font/notosan_regular"
             android:gravity="top"
             android:includeFontPadding="false"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:text="@={vm.content}"
             android:textColor="#262626"
             android:textSize="16dp"

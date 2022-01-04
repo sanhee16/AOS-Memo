@@ -1,6 +1,8 @@
 package com.sandy.memo
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +10,14 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 
 open class BaseActivity : AppCompatActivity() {
+    lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        createNotificationChannel()
     }
 
     inline fun <reified T : Activity> Context.startActivity() {
@@ -48,5 +53,40 @@ open class BaseActivity : AppCompatActivity() {
 
     fun showToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun createNotificationChannel() {
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val notificationChannel = NotificationChannel(
+                Constants.PRIMARY_CHANNEL_ID,
+                "TEST NOTIFICATION",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationChannel.enableLights(false)
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+    fun makeNotification(notification_id: Int, title: String, content: String) {
+        notificationManager.notify(
+            notification_id,
+            NotificationCompat.Builder(this, Constants.PRIMARY_CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setOngoing(true)
+                .setSmallIcon(R.drawable.read_mode).build()
+        )
+    }
+
+    fun cancelNotification(cancelId: Int) {
+        // https://mine-it-record.tistory.com/242
+        notificationManager.cancel(cancelId)
+    }
+
+    fun cancelNotificationAll() {
+        notificationManager.cancelAll()
     }
 }

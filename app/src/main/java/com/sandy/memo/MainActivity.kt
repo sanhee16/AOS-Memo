@@ -14,13 +14,16 @@ class MainActivity : BaseActivity() {
         b.btnMoveDataShow.text = "move to data show activity"
         b.btnMoveMemoActivity.text = "move to memo activity"
     }
+
     fun initDataBinding() {
         b = DataBindingUtil.setContentView(this, R.layout.activity_main)
         b.main = this
     }
+
     fun moveDataShow() {
         startActivity<DataShowActivity>()
     }
+
     fun moveMemoActivity() {
         startActivity<MemoActivity>()
     }

@@ -30,13 +30,23 @@
         android:padding="10dp"
         tools:context=".MainActivity">
 
+        <ImageView
+            android:id="@+id/image_pin"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/pin_selected"
+            android:layout_marginEnd="2dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@+id/memo_item"
+            app:layout_constraintEnd_toEndOf="@+id/memo_item"
+            />
         <TextView
             android:id="@+id/text_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="80dp"
             android:fontFamily="@font/notosan_medium"
             android:includeFontPadding="false"
             android:text="@{data.title}"
@@ -81,5 +91,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/memo_item"
             app:layout_constraintStart_toStartOf="@+id/memo_item"
             app:layout_constraintTop_toTopOf="@+id/memo_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
