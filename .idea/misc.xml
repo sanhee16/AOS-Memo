@@ -7,9 +7,10 @@
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_data_show.xml" value="0.22" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo.xml" value="0.33" />
-        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.25" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.33" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_list_page.xml" value="0.5276041666666667" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_show_page.xml" value="0.25" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/dialog_type1.xml" value="0.19248234106962664" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/fragment_memo_edit_page.xml" value="0.25" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/fragment_memo_list_page.xml" value="0.39945652173913043" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/memo_add.xml" value="0.3078125" />

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MvvmPattern</string>
+    <string name="save_memo">saved</string>
+    <string name="exit_dialog">exit without saving</string>
+    <string name="cancel">cancel</string>
+    <string name="accept">accept</string>
+    <string name="read_mode">read mode</string>
+    <string name="write_mode">write mode</string>
 </resources>

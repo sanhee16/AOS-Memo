@@ -47,7 +47,7 @@ class MemoEditPageActivity : BaseActivity() {
                     }
                     SHOW_DIALOG -> {
                         val dlg = DialogType1(this)
-                        dlg.start("저장하지 않고 나가기")
+                        dlg.start(this.resources.getString(R.string.exit_dialog))
                         dlg.setClickListener(object : DialogType1.OnClickListener {
                             override fun onConfirmClick() {
                                 dlg.dismiss()
@@ -60,7 +60,7 @@ class MemoEditPageActivity : BaseActivity() {
                         })
                     }
                     SHOW_TOAST -> {
-                        showToast("저장했습니다.")
+                        showToast(this.resources.getString(R.string.save_memo))
                     }
                 }
             }

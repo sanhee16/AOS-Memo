@@ -133,6 +133,21 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.02" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/notosan_regular"
+            android:includeFontPadding="false"
+            android:text="@{vm.mode ? @string/read_mode : @string/write_mode}"
+            android:textColor="#000"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_mode"
+            app:layout_constraintEnd_toStartOf="@+id/btn_mode"
+            app:layout_constraintTop_toTopOf="@+id/btn_mode"
+            tools:text="읽기모드" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
