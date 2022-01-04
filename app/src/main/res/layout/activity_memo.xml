@@ -9,11 +9,11 @@
 
         <variable
             name="vm"
-            type="com.example.mvvmpattern.viewmodel.MemoActivityViewModel" />
+            type="com.sandy.memo.viewmodel.MemoActivityViewModel" />
 
         <variable
             name="act"
-            type="com.example.mvvmpattern.view.MemoActivity" />
+            type="com.sandy.memo.view.MemoActivity" />
 
         <variable
             name="isEditMode"

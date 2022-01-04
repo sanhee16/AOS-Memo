@@ -7,11 +7,11 @@
 
         <variable
             name="vm"
-            type="com.example.mvvmpattern.viewmodel.MemoEditViewModel" />
+            type="com.sandy.memo.viewmodel.MemoEditViewModel" />
 
         <variable
             name="act"
-            type="com.example.mvvmpattern.view.MemoEditPageActivity" />
+            type="com.sandy.memo.view.MemoEditPageActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

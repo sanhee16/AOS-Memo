@@ -7,11 +7,11 @@
 
         <variable
             name="vm"
-            type="com.example.mvvmpattern.viewmodel.DataShowViewModel" />
+            type="com.sandy.memo.viewmodel.DataShowViewModel" />
 
         <variable
             name="act"
-            type="com.example.mvvmpattern.view.DataShowActivity" />
+            type="com.sandy.memo.view.DataShowActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

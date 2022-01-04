@@ -7,7 +7,7 @@
 
         <variable
             name="main"
-            type="com.example.mvvmpattern.MainActivity" />
+            type="com.sandy.memo.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

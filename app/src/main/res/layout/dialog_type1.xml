@@ -7,7 +7,7 @@
 
         <variable
             name="dialog"
-            type="com.example.mvvmpattern.util.DialogType1" />
+            type="com.sandy.memo.util.DialogType1" />
 
     </data>
 

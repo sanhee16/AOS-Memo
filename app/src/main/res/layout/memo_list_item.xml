@@ -7,15 +7,15 @@
 
         <variable
             name="vm"
-            type="com.example.mvvmpattern.viewmodel.MemoActivityViewModel" />
+            type="com.sandy.memo.viewmodel.MemoActivityViewModel" />
 
         <variable
             name="adapter"
-            type="com.example.mvvmpattern.adapter.MemoListAdapter" />
+            type="com.sandy.memo.adapter.MemoListAdapter" />
 
         <variable
             name="data"
-            type="com.example.mvvmpattern.entity.Memo" />
+            type="com.sandy.memo.entity.Memo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MvvmPattern</string>
+    <string name="app_name">Memo</string>
     <string name="save_memo">saved</string>
     <string name="delete_memo">Are you sure to delete these memos?</string>
     <string name="exit_dialog">exit without saving</string>
