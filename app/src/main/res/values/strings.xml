@@ -7,4 +7,5 @@
     <string name="accept">accept</string>
     <string name="read_mode">read mode</string>
     <string name="write_mode">write mode</string>
+    <string name="set_password">set password</string>
 </resources>

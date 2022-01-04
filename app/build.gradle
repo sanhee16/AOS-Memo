@@ -36,7 +36,6 @@ android {
     }
 }
 dependencies {
-
     def roomVersion = "2.3.0"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     implementation("androidx.room:room-runtime:$roomVersion")

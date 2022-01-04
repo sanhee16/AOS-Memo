@@ -20,6 +20,7 @@ open class BaseViewModel : ViewModel() {
         const val SHOW_DIALOG = "SHOW_DIALOG"
         const val SHOW_TOAST = "SHOW_TOAST"
         const val HIDE_KEYBOARD = "HIDE_KEYBOARD"
+        const val SET_PASSWORD = "SET_PASSWORD"
     }
 
     fun viewEvent(content: Any) {

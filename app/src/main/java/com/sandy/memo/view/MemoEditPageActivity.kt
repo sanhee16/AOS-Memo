@@ -8,7 +8,9 @@ import com.sandy.memo.Constants
 import com.sandy.memo.R
 import com.sandy.memo.databinding.ActivityMemoEditPageBinding
 import com.sandy.memo.util.DialogType1
+import com.sandy.memo.util.SetPassword
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_KEYBOARD
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.SET_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_TOAST
@@ -69,6 +71,9 @@ class MemoEditPageActivity : BaseActivity() {
                     }
                     HIDE_KEYBOARD -> {
                         imm.hideSoftInputFromWindow(b.textContext.windowToken, 0)
+                    }
+                    SET_PASSWORD -> {
+                        val dlg = SetPassword(this)
                     }
                 }
             }

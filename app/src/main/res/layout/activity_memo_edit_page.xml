@@ -85,6 +85,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/btn_password"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginEnd="10dp"
+            android:background="@{vm.isPassword ? @drawable/lock : @drawable/unlock }"
+            android:onClick="@{()->vm.onClickPassword()}"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_top"
+            app:layout_constraintEnd_toStartOf="@+id/btn_pin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/btn_save"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
@@ -95,7 +107,7 @@
             android:onClick="@{()->vm.onClickSaveBtn()}"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/guide_top"
-            app:layout_constraintEnd_toStartOf="@+id/btn_pin"
+            app:layout_constraintEnd_toStartOf="@+id/btn_password"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button

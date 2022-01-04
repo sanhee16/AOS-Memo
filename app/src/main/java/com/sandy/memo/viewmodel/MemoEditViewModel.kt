@@ -1,5 +1,7 @@
 package com.sandy.memo.viewmodel
 
+import com.sandy.memo.Constants
+import com.sandy.memo.MyApplication.Companion.prefs
 import com.sandy.memo.common.mediatorLiveData
 import com.sandy.memo.common.mutableLiveData
 import com.sandy.memo.entity.Memo
@@ -14,16 +16,18 @@ class MemoEditViewModel(
     val title = mutableLiveData("")
     val content = mutableLiveData("")
     var mode = mutableLiveData(false)
-    private var memo: Memo = Memo("", "", getCurrentTime(), false)
+    private var memo: Memo = Memo("", "", getCurrentTime(), false, false)
     val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
     var editEnabled = mediatorLiveData(mode) { !mode.value!! }
     val pinStatus = mutableLiveData(false)
+    val isPassword = mutableLiveData(false)
 
     fun onClickSaveBtn() {
         memo.title = title.value.toString()
         memo.content = content.value.toString()
         memo.date = getCurrentTime()
         memo.pin = pinStatus.value == true
+        memo.isPassword = isPassword.value == true
 
         CoroutineScope(Dispatchers.IO).launch {
             memoRepository.insert(memo)
@@ -38,6 +42,7 @@ class MemoEditViewModel(
             content.postValue(memo.content)
             title.postValue(memo.title)
             pinStatus.postValue(memo.pin)
+            isPassword.postValue(memo.isPassword)
         }
         editEnabled.postValue(false)
         changeMode()
@@ -62,5 +67,13 @@ class MemoEditViewModel(
                 memoRepository.updatePin(memo.id, updatePin)
             }
         }
+    }
+
+    fun onClickPassword() {
+        if (prefs.getInt(Constants.PASSWORD, -1) == -1) {
+            // 비밀번호 설정하기
+            viewEvent(SET_PASSWORD)
+        }
+        isPassword.value = isPassword.value?.let { !isPassword.value!! }
     }
 }
