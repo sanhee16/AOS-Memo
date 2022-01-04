@@ -27,6 +27,7 @@ class MemoEditViewModel(
             memoRepository.insert(memo)
         }
         viewEvent(SHOW_TOAST)
+        viewEvent(HIDE_KEYBOARD)
     }
 
     fun getItem(id: Int) {

@@ -1,18 +1,16 @@
 package com.example.mvvmpattern.viewmodel
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvmpattern.Constants
 import com.example.mvvmpattern.common.Event
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 open class BaseViewModel : ViewModel() {
     private val _viewEvent = MutableLiveData<Event<Any>>()
-    val viewEvent: LiveData<Event<Any>>
-        get() = _viewEvent
+    val viewEvent: LiveData<Event<Any>> get() = _viewEvent
+
     companion object {
         const val SHOW_MEMO_LIST = "SHOW_MEMO_LIST"
         const val MAKE_NEW_MEMO = "MAKE_NEW_MEMO"
@@ -21,6 +19,7 @@ open class BaseViewModel : ViewModel() {
         const val HIDE_PROGRESS_BAR = "HIDE_PROGRESS_BAR"
         const val SHOW_DIALOG = "SHOW_DIALOG"
         const val SHOW_TOAST = "SHOW_TOAST"
+        const val HIDE_KEYBOARD = "HIDE_KEYBOARD"
     }
 
     fun viewEvent(content: Any) {

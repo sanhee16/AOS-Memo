@@ -32,8 +32,10 @@ class MemoActivityViewModel(
     // MemoEditPage fragment 띄우기
     fun onClickAddBtn() = viewEvent(MAKE_NEW_MEMO)
     fun onClickDeleteBtn() {
-        // check 된거 delete
-        // adapter 에 checkList 에 id목록 있음 : 어떻게 가져올 건지?
+        viewEvent(SHOW_DIALOG)
+    }
+
+    fun deleteMemo() {
         showProgressBar()
         CoroutineScope(Dispatchers.IO).launch {
             for (i in checkList) {

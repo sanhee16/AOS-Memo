@@ -37,11 +37,6 @@ class MemoActivity : BaseActivity() {
 
         b.memoListRecycler.layoutManager = LinearLayoutManager(this)
         b.memoListRecycler.adapter = adapter
-        // itemLongClickListener 구현해서 listener 넣기
-//        adapter.setOnItemLongClickListener(object : MemoListAdapter.OnItemLongClickListener {
-//            override fun onLongClick(memoBinding: MemoListItemBinding, data: Memo) {
-//            }
-//        })
     }
 
     private fun observeLiveData() {
@@ -69,6 +64,19 @@ class MemoActivity : BaseActivity() {
                     }
                     HIDE_PROGRESS_BAR -> {
                         b.progressBar.hideProgress()
+                    }
+                    SHOW_DIALOG -> {
+                        val dlg = DialogType1(this)
+                        dlg.start(this.resources.getString(R.string.delete_memo))
+                        dlg.setClickListener(object : DialogType1.OnClickListener {
+                            override fun onConfirmClick() {
+                                dlg.dismiss()
+                                vm.deleteMemo()
+                            }
+                            override fun onClickCancel() {
+                                dlg.dismiss()
+                            }
+                        })
                     }
                 }
             }
