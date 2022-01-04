@@ -13,7 +13,7 @@ class MemoEditViewModel(
 ) : BaseViewModel() {
     val title = mutableLiveData("")
     val content = mutableLiveData("")
-    var mode = mutableLiveData(true)
+    var mode = mutableLiveData(false)
     private var memo: Memo = Memo("", "", getCurrentTime())
     val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
     var editEnabled = mediatorLiveData(mode) { !mode.value!! }
@@ -37,6 +37,7 @@ class MemoEditViewModel(
             title.postValue(memo.title)
         }
         editEnabled.postValue(false)
+        changeMode()
     }
 
     fun onClickBackBtn() {
