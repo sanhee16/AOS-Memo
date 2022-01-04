@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 // mysql 에서 table
 @Entity
-data class Memo(var title: String, var content: String, var date: String) {
+data class Memo(var title: String, var content: String, var date: String, var pin: Boolean) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }

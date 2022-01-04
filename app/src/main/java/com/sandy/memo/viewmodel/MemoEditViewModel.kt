@@ -14,14 +14,16 @@ class MemoEditViewModel(
     val title = mutableLiveData("")
     val content = mutableLiveData("")
     var mode = mutableLiveData(false)
-    private var memo: Memo = Memo("", "", getCurrentTime())
+    private var memo: Memo = Memo("", "", getCurrentTime(), false)
     val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
     var editEnabled = mediatorLiveData(mode) { !mode.value!! }
+    val pinStatus = mutableLiveData(false)
 
     fun onClickSaveBtn() {
         memo.title = title.value.toString()
         memo.content = content.value.toString()
         memo.date = getCurrentTime()
+        memo.pin = pinStatus.value == true
 
         CoroutineScope(Dispatchers.IO).launch {
             memoRepository.insert(memo)
@@ -35,6 +37,7 @@ class MemoEditViewModel(
             memo = memoRepository.getItem(id)
             content.postValue(memo.content)
             title.postValue(memo.title)
+            pinStatus.postValue(memo.pin)
         }
         editEnabled.postValue(false)
         changeMode()
@@ -50,4 +53,14 @@ class MemoEditViewModel(
     fun changeMode() = mode.postValue(!mode.value!!)
     private fun checkChange() =
         !((memo.title == title.value.toString()) && (memo.content == content.value.toString()))
+
+    fun onClickPin() {
+        pinStatus.value?.let {
+            val updatePin = !pinStatus.value!!
+            pinStatus.postValue(updatePin)
+            CoroutineScope(Dispatchers.IO).launch {
+                memoRepository.updatePin(memo.id, updatePin)
+            }
+        }
+    }
 }

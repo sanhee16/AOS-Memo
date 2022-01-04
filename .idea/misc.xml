@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MvvmPattern/app/src/main/res/drawable/memo_item.xml" value="0.3567708333333333" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/drawable/pin.xml" value="0.5479166666666667" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_data_show.xml" value="0.22" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo.xml" value="0.33" />
-        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.18" />
+        <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_edit_page.xml" value="0.25" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_list_page.xml" value="0.5276041666666667" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/activity_memo_show_page.xml" value="0.25" />
         <entry key="..\:/MvvmPattern/app/src/main/res/layout/dialog_type1.xml" value="0.19248234106962664" />

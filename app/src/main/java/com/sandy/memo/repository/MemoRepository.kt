@@ -31,11 +31,15 @@ class MemoRepository(application: Application) {
         return memoDao.getAll()
     }
 
-    fun getItem(id: Int) : Memo {
+    fun getItem(id: Int): Memo {
         return memoDao.getItem(id)
     }
 
-    fun deleteFromId(id: Int){
+    fun deleteFromId(id: Int) {
         return memoDao.deleteFromId(id)
+    }
+
+    fun updatePin(id: Int, pin: Boolean) {
+        memoDao.updatePin(id, pin)
     }
 }

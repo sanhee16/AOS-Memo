@@ -74,16 +74,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/btn_pin"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:background="@{vm.pinStatus ? @drawable/pin_selected : @drawable/pin_not_select }"
+            android:visibility="visible"
+            android:onClick="@{()->vm.onClickPin()}"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_top"
+            app:layout_constraintEnd_toEndOf="@+id/guide_right"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/btn_save"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/save"
             android:backgroundTint="@color/buttonColor"
             android:enabled="@{vm.isSaveButtonEnabled}"
             android:onClick="@{()->vm.onClickSaveBtn()}"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/guide_top"
-            app:layout_constraintEnd_toEndOf="@+id/guide_right"
+            app:layout_constraintEnd_toStartOf="@+id/btn_pin"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button

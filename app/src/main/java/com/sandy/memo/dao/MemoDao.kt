@@ -35,4 +35,7 @@ interface MemoDao {
 
     @Query("SELECT * FROM Memo WHERE id = :id")
     fun getItem(id: Int) : Memo
+
+    @Query("UPDATE Memo SET pin = :pin WHERE id = :id")
+    fun updatePin(id: Int, pin: Boolean)
 }
