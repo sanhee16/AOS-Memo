@@ -4,14 +4,13 @@ import android.content.Context
 import com.sandy.memo.R
 
 import android.app.Dialog
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.TextView
 
 
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-custom-views#3
-class SetPassword(context: Context) {
+class CreatePassword(context: Context) {
     private val dialog = Dialog(context)
     private lateinit var btnConfirm: TextView
     private lateinit var btnCancel: TextView
@@ -34,7 +33,7 @@ class SetPassword(context: Context) {
     private var cnt = 0
     fun start() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.set_password)
+        dialog.setContentView(R.layout.create_password)
         dialog.setCancelable(true)
         setView()
         setPasswordText()

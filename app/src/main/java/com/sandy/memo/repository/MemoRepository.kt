@@ -43,7 +43,16 @@ class MemoRepository(application: Application) {
         memoDao.updatePin(id, pin)
     }
 
-    fun getPinList() : LiveData<List<Memo>> {
+    fun getPinList(): LiveData<List<Memo>> {
         return memoDao.getPinList()
     }
+
+    fun updatePassword(id: Int, isPassword: Boolean) {
+        memoDao.updatePassword(id, isPassword)
+    }
+
+    fun checkIsPassword(id: Int): Boolean {
+        return memoDao.checkIsPassword(id)
+    }
+
 }

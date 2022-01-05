@@ -10,7 +10,10 @@ import com.sandy.memo.R
 import com.sandy.memo.adapter.MemoListAdapter
 import com.sandy.memo.databinding.ActivityMemoBinding
 import com.sandy.memo.entity.Memo
+import com.sandy.memo.util.CreatePassword
 import com.sandy.memo.util.DialogType1
+import com.sandy.memo.util.EnterPassword
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.CHECK_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_PROGRESS_BAR
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.MAKE_NEW_MEMO
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
@@ -80,6 +83,19 @@ class MemoActivity : BaseActivity() {
                                 vm.deleteMemo()
                             }
 
+                            override fun onClickCancel() {
+                                dlg.dismiss()
+                            }
+                        })
+                    }
+                    CHECK_PASSWORD -> {
+                        val dlg = EnterPassword(this)
+                        dlg.start()
+                        dlg.setClickListener(object : EnterPassword.OnClickListener {
+                            override fun onConfirmClick(password: String) {
+                                dlg.dismiss()
+                                vm.checkPassword(password)
+                            }
                             override fun onClickCancel() {
                                 dlg.dismiss()
                             }

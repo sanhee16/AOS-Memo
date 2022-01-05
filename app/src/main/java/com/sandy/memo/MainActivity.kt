@@ -1,11 +1,8 @@
 package com.sandy.memo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.sandy.memo.databinding.ActivityMainBinding
-import com.sandy.memo.util.DialogType1
-import com.sandy.memo.util.SetPassword
 import com.sandy.memo.view.DataShowActivity
 import com.sandy.memo.view.MemoActivity
 

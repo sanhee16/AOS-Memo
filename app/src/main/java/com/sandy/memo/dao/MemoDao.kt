@@ -41,4 +41,10 @@ interface MemoDao {
 
     @Query("SELECT * FROM Memo WHERE pin = 1")
     fun getPinList() : LiveData<List<Memo>>
+
+    @Query("UPDATE Memo SET isPassword = :isPassword WHERE id = :id")
+    fun updatePassword(id: Int, isPassword: Boolean)
+
+    @Query("SELECT isPassword FROM Memo WHERE id = :id")
+    fun checkIsPassword(id: Int) : Boolean
 }

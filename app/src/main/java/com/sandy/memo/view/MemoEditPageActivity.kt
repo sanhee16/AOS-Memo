@@ -1,7 +1,6 @@
 package com.sandy.memo.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import com.sandy.memo.BaseActivity
@@ -9,7 +8,7 @@ import com.sandy.memo.Constants
 import com.sandy.memo.R
 import com.sandy.memo.databinding.ActivityMemoEditPageBinding
 import com.sandy.memo.util.DialogType1
-import com.sandy.memo.util.SetPassword
+import com.sandy.memo.util.CreatePassword
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_KEYBOARD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SET_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
@@ -74,13 +73,13 @@ class MemoEditPageActivity : BaseActivity() {
                         imm.hideSoftInputFromWindow(b.textContext.windowToken, 0)
                     }
                     SET_PASSWORD -> {
-                        val dlg = SetPassword(this)
+                        val dlg = CreatePassword(this)
                         dlg.start()
-                        dlg.setClickListener(object : SetPassword.OnClickListener {
+                        dlg.setClickListener(object : CreatePassword.OnClickListener {
                             override fun onConfirmClick(password: String) {
                                 dlg.dismiss()
+                                vm.createPassword(password)
                             }
-
                             override fun onClickCancel() {
                                 dlg.dismiss()
                             }
