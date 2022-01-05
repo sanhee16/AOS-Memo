@@ -8,4 +8,7 @@
     <string name="read_mode">read mode</string>
     <string name="write_mode">write mode</string>
     <string name="set_password">set password</string>
+    <string name="check_password">Fill in four digits of the password.</string>
+    <string name="cancel_make_password">cancel creation</string>
+    <string name="make_password">create</string>
 </resources>

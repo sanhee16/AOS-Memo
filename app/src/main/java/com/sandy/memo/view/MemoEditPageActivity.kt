@@ -1,6 +1,7 @@
 package com.sandy.memo.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import com.sandy.memo.BaseActivity
@@ -74,6 +75,16 @@ class MemoEditPageActivity : BaseActivity() {
                     }
                     SET_PASSWORD -> {
                         val dlg = SetPassword(this)
+                        dlg.start()
+                        dlg.setClickListener(object : SetPassword.OnClickListener {
+                            override fun onConfirmClick(password: String) {
+                                dlg.dismiss()
+                            }
+
+                            override fun onClickCancel() {
+                                dlg.dismiss()
+                            }
+                        })
                     }
                 }
             }

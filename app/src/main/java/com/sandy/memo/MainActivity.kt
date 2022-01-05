@@ -1,6 +1,7 @@
 package com.sandy.memo
 
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.sandy.memo.databinding.ActivityMainBinding
 import com.sandy.memo.util.DialogType1
@@ -15,13 +16,9 @@ class MainActivity : BaseActivity() {
         initDataBinding()
         b.btnMoveDataShow.text = "move to data show activity"
         b.btnMoveMemoActivity.text = "move to memo activity"
-
-
-        val dlg = SetPassword(this)
-        dlg.start()
     }
 
-    fun initDataBinding() {
+    private fun initDataBinding() {
         b = DataBindingUtil.setContentView(this, R.layout.activity_main)
         b.main = this
     }
