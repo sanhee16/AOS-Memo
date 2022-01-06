@@ -1,5 +1,6 @@
 package com.sandy.memo.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sandy.memo.Constants
@@ -23,7 +24,7 @@ class MemoActivityViewModel(
     val isEditMode: LiveData<Boolean> get() = _isEditMode
     var notificationList = memoRepository.getPinList()
 
-    var id = 0
+    var id = -1
     private var checkList: MutableList<Int> = mutableListOf()
 
     init {
@@ -55,29 +56,27 @@ class MemoActivityViewModel(
 
     fun onClickItem(id: Int) {
         // 비밀번호 확인
-        var isPassword = false
+        this.id = id
         CoroutineScope(Dispatchers.IO).launch {
-            isPassword = memoRepository.checkIsPassword(id)
-        }
-        if (isPassword) {
-            this.id = id
-            viewEvent(CHECK_PASSWORD)
-        } else {
-            _item.postValue(id)
-            viewEvent(MAKE_EDIT_MEMO)
+            val isPassword = memoRepository.checkIsPassword(id)
+            if (isPassword) {
+                viewEvent(CHECK_PASSWORD)
+            } else {
+                _item.postValue(id)
+            }
         }
     }
 
     fun checkPassword(enterPassword: String) {
         val password = prefs.getString(Constants.PASSWORD, "no-password")
         if (password == enterPassword) {
+            viewEvent(RIGHT_PASSWORD)
             _item.postValue(this.id)
-            viewEvent(MAKE_EDIT_MEMO)
         } else {
-            // todo 들어가지 못함 toast
+            viewEvent(ALERT_WRONG_PASSWORD)
         }
-
     }
+
     fun setEditMode() = _isEditMode.postValue(true)
     private fun dismissEditMode() = _isEditMode.postValue(false)
 

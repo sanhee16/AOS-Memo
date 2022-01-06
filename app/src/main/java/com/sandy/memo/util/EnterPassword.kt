@@ -4,6 +4,8 @@ import android.content.Context
 import com.sandy.memo.R
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.Window
 import android.widget.TextView
@@ -31,9 +33,10 @@ class EnterPassword(context: Context) {
 
     private var password = "****"
     private var cnt = 0
-    fun start() {
+    fun start(checkText:String, wrongText: String) {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.create_password)
+        dialog.setContentView(R.layout.enter_password)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(true)
         setView()
         setPasswordText()
@@ -41,7 +44,7 @@ class EnterPassword(context: Context) {
 
         btnConfirm.setOnClickListener {
             if (cnt != 4) {
-                textWarning.visibility = View.VISIBLE
+                changeWarningText(checkText)
             } else {
                 listener.onConfirmClick(password)
             }
@@ -52,15 +55,22 @@ class EnterPassword(context: Context) {
         dialog.show()
     }
 
+    fun changeWarningText(str: String) {
+        textWarning.visibility = View.VISIBLE
+        textWarning.text = str
+    }
+
     fun dismiss() = dialog.dismiss()
     interface OnClickListener {
         fun onConfirmClick(password: String)
         fun onClickCancel()
     }
+
     private lateinit var listener: OnClickListener
     fun setClickListener(listener: OnClickListener) {
         this.listener = listener
     }
+
     private fun onClickNumbers() {
         text1.setOnClickListener { replacePassword("1") }
         text2.setOnClickListener { replacePassword("2") }

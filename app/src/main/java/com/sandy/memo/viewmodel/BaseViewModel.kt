@@ -22,10 +22,12 @@ open class BaseViewModel : ViewModel() {
         const val HIDE_KEYBOARD = "HIDE_KEYBOARD"
         const val SET_PASSWORD = "SET_PASSWORD"
         const val CHECK_PASSWORD = "CHECK_PASSWORD"
+        const val ALERT_WRONG_PASSWORD = "ALERT_WRONG_PASSWORD"
+        const val RIGHT_PASSWORD = "RIGHT_PASSWORD"
     }
 
     fun viewEvent(content: Any) {
-        _viewEvent.value = Event(content)
+        _viewEvent.postValue(Event(content))
     }
 
     fun getCurrentTime(): String =

@@ -1,7 +1,6 @@
 package com.sandy.memo.view
 
 import android.os.Bundle
-import androidx.core.app.NotificationCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sandy.memo.BaseActivity
@@ -10,12 +9,13 @@ import com.sandy.memo.R
 import com.sandy.memo.adapter.MemoListAdapter
 import com.sandy.memo.databinding.ActivityMemoBinding
 import com.sandy.memo.entity.Memo
-import com.sandy.memo.util.CreatePassword
 import com.sandy.memo.util.DialogType1
 import com.sandy.memo.util.EnterPassword
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.ALERT_WRONG_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.CHECK_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_PROGRESS_BAR
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.MAKE_NEW_MEMO
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.RIGHT_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_PROGRESS_BAR
 import com.sandy.memo.viewmodel.MemoActivityViewModel
@@ -25,6 +25,8 @@ class MemoActivity : BaseActivity() {
     private lateinit var b: ActivityMemoBinding
     private val vm: MemoActivityViewModel by viewModel()
     private lateinit var adapter: MemoListAdapter
+    private lateinit var enterPassword: EnterPassword
+    private lateinit var dlg: DialogType1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,31 +77,38 @@ class MemoActivity : BaseActivity() {
                         b.progressBar.hideProgress()
                     }
                     SHOW_DIALOG -> {
-                        val dlg = DialogType1(this)
+                        dlg = DialogType1(this)
                         dlg.start(this.resources.getString(R.string.delete_memo))
                         dlg.setClickListener(object : DialogType1.OnClickListener {
                             override fun onConfirmClick() {
                                 dlg.dismiss()
                                 vm.deleteMemo()
                             }
-
                             override fun onClickCancel() {
                                 dlg.dismiss()
                             }
                         })
                     }
                     CHECK_PASSWORD -> {
-                        val dlg = EnterPassword(this)
-                        dlg.start()
-                        dlg.setClickListener(object : EnterPassword.OnClickListener {
+                        enterPassword = EnterPassword(this)
+                        enterPassword.start(
+                            this.resources.getString(R.string.check_password),
+                            this.resources.getString(R.string.wrong_password)
+                        )
+                        enterPassword.setClickListener(object : EnterPassword.OnClickListener {
                             override fun onConfirmClick(password: String) {
-                                dlg.dismiss()
                                 vm.checkPassword(password)
                             }
                             override fun onClickCancel() {
-                                dlg.dismiss()
+                                enterPassword.dismiss()
                             }
                         })
+                    }
+                    ALERT_WRONG_PASSWORD -> {
+                        enterPassword.changeWarningText(this.resources.getString(R.string.wrong_password))
+                    }
+                    RIGHT_PASSWORD -> {
+                        enterPassword.dismiss()
                     }
                 }
             }

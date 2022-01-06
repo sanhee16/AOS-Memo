@@ -13,4 +13,5 @@
     <string name="cancel_make_password">생성 취소</string>
     <string name="make_password">생성하기</string>
     <string name="enter_password">비밀번호 입력</string>
+    <string name="wrong_password">비밀번호가 틀렸습니다.</string>
 </resources>

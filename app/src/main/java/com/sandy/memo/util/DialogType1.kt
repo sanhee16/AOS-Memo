@@ -2,6 +2,8 @@ package com.sandy.memo.util
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.Window
 import android.widget.TextView
 import com.sandy.memo.R
@@ -15,6 +17,7 @@ class DialogType1(context: Context) {
     fun start(message: String) {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_type1)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(true)
 
         this.message = dialog.findViewById(R.id.text_message)
