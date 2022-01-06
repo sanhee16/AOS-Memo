@@ -54,6 +54,10 @@ class MemoActivityViewModel(
         dismissEditMode()
     }
 
+    fun onClickSetting() {
+        viewEvent(SETTING)
+    }
+
     fun onClickItem(id: Int) {
         // 비밀번호 확인
         this.id = id

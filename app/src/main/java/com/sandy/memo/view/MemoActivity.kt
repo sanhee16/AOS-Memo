@@ -16,6 +16,7 @@ import com.sandy.memo.viewmodel.BaseViewModel.Companion.CHECK_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_PROGRESS_BAR
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.MAKE_NEW_MEMO
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.RIGHT_PASSWORD
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.SETTING
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_PROGRESS_BAR
 import com.sandy.memo.viewmodel.MemoActivityViewModel
@@ -109,6 +110,9 @@ class MemoActivity : BaseActivity() {
                     }
                     RIGHT_PASSWORD -> {
                         enterPassword.dismiss()
+                    }
+                    SETTING -> {
+                        startActivityWithFinish<SettingActivity>()
                     }
                 }
             }

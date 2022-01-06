@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.sandy.memo.viewmodel.SettingActivityViewModel" />
+
+        <variable
+            name="act"
+            type="com.sandy.memo.view.SettingActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <TextView
+            android:id="@+id/password_setting"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_item_height"
+            android:background="@drawable/setting_item"
+            android:fontFamily="@font/notosan_regular"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:onClick="@{()->vm.onClickSetPassword()}"
+            android:paddingLeft="10dp"
+            android:text="@string/setting_password"
+            android:textSize="@dimen/setting_item_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/guide_right"
+            app:layout_constraintStart_toStartOf="@+id/guide_left"
+            app:layout_constraintTop_toTopOf="@+id/guide_top" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

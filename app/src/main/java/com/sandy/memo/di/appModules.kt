@@ -6,6 +6,7 @@ import com.sandy.memo.repository.MemoRepository
 import com.sandy.memo.viewmodel.DataShowViewModel
 import com.sandy.memo.viewmodel.MemoActivityViewModel
 import com.sandy.memo.viewmodel.MemoEditViewModel
+import com.sandy.memo.viewmodel.SettingActivityViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module // dsl : domain specific language
@@ -19,6 +20,7 @@ val viewModelModules = module {
     viewModel { DataShowViewModel(get()) }
     viewModel { MemoActivityViewModel(get()) }
     viewModel { MemoEditViewModel(get()) }
+    viewModel { SettingActivityViewModel(get()) }
 }
 
 val repository = module {

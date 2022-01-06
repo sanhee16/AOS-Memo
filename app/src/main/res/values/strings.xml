@@ -13,4 +13,5 @@
     <string name="wrong_password">Wrong password.</string>
     <string name="cancel_make_password">cancel creation</string>
     <string name="make_password">create</string>
+    <string name="setting_password">set password</string>
 </resources>

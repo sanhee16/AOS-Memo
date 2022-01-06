@@ -27,6 +27,9 @@
         <activity
             android:name="com.sandy.memo.view.MemoEditPageActivity"
             android:theme="@style/Theme.MvvmPattern" />
+        <activity
+            android:name="com.sandy.memo.view.SettingActivity"
+            android:theme="@style/Theme.MvvmPattern" />
     </application>
 
 </manifest>
