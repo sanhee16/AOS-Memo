@@ -71,16 +71,21 @@ class MemoEditViewModel(
 
     fun onClickPassword() {
         if (prefs.getString(Constants.PASSWORD, "no-password") == "no-password") {
-            // 비밀번호 설정하기
             viewEvent(SET_PASSWORD)
-        }
-        isPassword.value = isPassword.value?.let { !isPassword.value!! }
-        CoroutineScope(Dispatchers.IO).launch {
-            isPassword.value?.let { memoRepository.updatePassword(memo.id, it) }
+        } else {
+            setPassword()
         }
     }
 
     fun createPassword(password: String) {
+        setPassword()
         prefs.setString(Constants.PASSWORD, password)
+    }
+
+    private fun setPassword() {
+        isPassword.value = isPassword.value?.let { !isPassword.value!! }
+        CoroutineScope(Dispatchers.IO).launch {
+            isPassword.value?.let { memoRepository.updatePassword(memo.id, it) }
+        }
     }
 }
