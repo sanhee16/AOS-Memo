@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    apply plugin: 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -38,9 +37,6 @@ android {
 }
 // https://thinking-face.tistory.com/entry/Hilt-2-Dependency-Injection-with-Hilt?category=753800
 dependencies {
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
-
     def roomVersion = "2.3.0"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     implementation("androidx.room:room-runtime:$roomVersion")
