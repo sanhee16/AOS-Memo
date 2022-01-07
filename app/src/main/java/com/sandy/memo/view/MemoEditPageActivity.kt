@@ -1,5 +1,6 @@
 package com.sandy.memo.view
 
+import android.appwidget.AppWidgetManager
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
@@ -14,8 +15,13 @@ import com.sandy.memo.viewmodel.BaseViewModel.Companion.SET_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_TOAST
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.WIDGET_UPDATE
 import com.sandy.memo.viewmodel.MemoEditViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.content.ComponentName
+import android.util.Log
+import com.sandy.memo.widget.WidgetProvider
+
 
 class MemoEditPageActivity : BaseActivity() {
     private lateinit var b: ActivityMemoEditPageBinding
@@ -88,6 +94,14 @@ class MemoEditPageActivity : BaseActivity() {
                                 enterPassword.dismiss()
                             }
                         })
+                    }
+                    WIDGET_UPDATE -> {
+                        Log.v("sandy","WIDGET_UPDATE")
+                        val appWidgetManager = AppWidgetManager.getInstance(this)
+                        val appWidgetIds = appWidgetManager.getAppWidgetIds(
+                            ComponentName(this, WidgetProvider::class.java)
+                        )
+                        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_listview)
                     }
                 }
             }

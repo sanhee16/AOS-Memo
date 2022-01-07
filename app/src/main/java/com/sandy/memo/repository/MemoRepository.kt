@@ -3,6 +3,7 @@ package com.sandy.memo.repository
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.sandy.memo.dao.MemoDao
+import com.sandy.memo.data.WidgetItem
 import com.sandy.memo.database.AppDatabase
 import com.sandy.memo.entity.Memo
 
@@ -53,6 +54,10 @@ class MemoRepository(application: Application) {
 
     fun checkIsPassword(id: Int): Boolean {
         return memoDao.checkIsPassword(id)
+    }
+
+    fun getWidgetInfo(): LiveData<List<WidgetItem>> {
+        return memoDao.getWidgetInfo()
     }
 
 }

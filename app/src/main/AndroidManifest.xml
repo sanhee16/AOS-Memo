@@ -3,33 +3,51 @@
     package="com.sandy.memo">
 
     <application
-        android:name="com.sandy.memo.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MvvmPattern">
+        <service
+            android:name=".widget.WidgetRemoteViewsService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
         <activity
-            android:name="com.sandy.memo.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sandy.memo.view.DataShowActivity"
+            android:name=".view.DataShowActivity"
             android:theme="@style/Theme.MvvmPattern" />
         <activity
-            android:name="com.sandy.memo.view.MemoActivity"
+            android:name=".view.MemoActivity"
             android:theme="@style/Theme.MvvmPattern" />
         <activity
-            android:name="com.sandy.memo.view.MemoEditPageActivity"
+            android:name=".view.MemoEditPageActivity"
             android:theme="@style/Theme.MvvmPattern" />
         <activity
-            android:name="com.sandy.memo.view.SettingActivity"
+            android:name=".view.SettingActivity"
             android:theme="@style/Theme.MvvmPattern" />
+
+        <receiver android:name=".widget.WidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@layout/widget_provider" />
+        </receiver>
     </application>
 
 </manifest>

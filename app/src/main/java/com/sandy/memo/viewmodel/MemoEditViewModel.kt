@@ -1,9 +1,11 @@
 package com.sandy.memo.viewmodel
 
+import android.appwidget.AppWidgetManager
 import com.sandy.memo.Constants
 import com.sandy.memo.MyApplication.Companion.prefs
 import com.sandy.memo.common.mediatorLiveData
 import com.sandy.memo.common.mutableLiveData
+import com.sandy.memo.data.WidgetItem
 import com.sandy.memo.entity.Memo
 import com.sandy.memo.repository.MemoRepository
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +36,7 @@ class MemoEditViewModel(
         }
         viewEvent(SHOW_TOAST)
         viewEvent(HIDE_KEYBOARD)
+        updateWidget()
     }
 
     fun getItem(id: Int) {
@@ -86,6 +89,17 @@ class MemoEditViewModel(
         isPassword.value = isPassword.value?.let { !isPassword.value!! }
         CoroutineScope(Dispatchers.IO).launch {
             isPassword.value?.let { memoRepository.updatePassword(memo.id, it) }
+        }
+    }
+
+    private fun updateWidget() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val getWidgetList = memoRepository.getWidgetInfo()
+            val widgetList = ArrayList<WidgetItem>()
+            getWidgetList.value?.forEach { item ->
+                widgetList.add(WidgetItem(item.id, item.title))
+            }
+            viewEvent(WIDGET_UPDATE)
         }
     }
 }

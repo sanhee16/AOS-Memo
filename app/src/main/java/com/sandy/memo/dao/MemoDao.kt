@@ -3,6 +3,7 @@ package com.sandy.memo.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
+import com.sandy.memo.data.WidgetItem
 import com.sandy.memo.entity.Memo
 
 
@@ -34,17 +35,20 @@ interface MemoDao {
     fun deleteFromId(id: Int)
 
     @Query("SELECT * FROM Memo WHERE id = :id")
-    fun getItem(id: Int) : Memo
+    fun getItem(id: Int): Memo
 
     @Query("UPDATE Memo SET pin = :pin WHERE id = :id")
     fun updatePin(id: Int, pin: Boolean)
 
     @Query("SELECT * FROM Memo WHERE pin = 1")
-    fun getPinList() : LiveData<List<Memo>>
+    fun getPinList(): LiveData<List<Memo>>
 
     @Query("UPDATE Memo SET isPassword = :isPassword WHERE id = :id")
     fun updatePassword(id: Int, isPassword: Boolean)
 
     @Query("SELECT isPassword FROM Memo WHERE id = :id")
-    fun checkIsPassword(id: Int) : Boolean
+    fun checkIsPassword(id: Int): Boolean
+
+    @Query("SELECT id,title FROM Memo")
+    fun getWidgetInfo(): LiveData<List<WidgetItem>>
 }

@@ -7,6 +7,7 @@ import com.sandy.memo.viewmodel.DataShowViewModel
 import com.sandy.memo.viewmodel.MemoActivityViewModel
 import com.sandy.memo.viewmodel.MemoEditViewModel
 import com.sandy.memo.viewmodel.SettingActivityViewModel
+import com.sandy.memo.widget.WidgetRemoteViewsFactory
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module // dsl : domain specific language

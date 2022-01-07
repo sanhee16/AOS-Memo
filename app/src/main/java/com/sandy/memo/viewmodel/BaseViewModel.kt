@@ -25,6 +25,7 @@ open class BaseViewModel : ViewModel() {
         const val ALERT_WRONG_PASSWORD = "ALERT_WRONG_PASSWORD"
         const val RIGHT_PASSWORD = "RIGHT_PASSWORD"
         const val SETTING = "SETTING"
+        const val WIDGET_UPDATE = "WIDGET_UPDATE"
     }
 
     fun viewEvent(content: Any) {
