@@ -20,5 +20,5 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000"
         android:textSize="16dp"
-        tools:text="aabba" />
+        tools:text="test title" />
 </LinearLayout>

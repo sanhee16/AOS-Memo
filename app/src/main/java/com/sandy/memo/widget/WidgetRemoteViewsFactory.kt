@@ -27,7 +27,7 @@ class WidgetRemoteViewsFactory(val context: Context) :
 
     override fun onDataSetChanged() {
         val getWidgetList = memoDao.getWidgetInfo()
-        val widgetList = ArrayList<WidgetItem>()
+        val widgetList = ArrayList<WidgetItem> ()
         getWidgetList.forEach { item ->
             widgetList.add(WidgetItem(item.id, item.title))
         }
