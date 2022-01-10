@@ -1,9 +1,15 @@
 package com.sandy.memo.viewmodel
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sandy.memo.R
 import com.sandy.memo.common.Event
+import com.sandy.memo.widget.WidgetProvider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -38,5 +44,4 @@ open class BaseViewModel : ViewModel() {
     fun showProgressBar() = viewEvent(SHOW_PROGRESS_BAR)
 
     fun hideProgressBar() = viewEvent(HIDE_PROGRESS_BAR)
-
 }

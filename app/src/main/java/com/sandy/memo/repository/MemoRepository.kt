@@ -1,6 +1,7 @@
 package com.sandy.memo.repository
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.sandy.memo.dao.MemoDao
 import com.sandy.memo.data.WidgetItem
@@ -12,12 +13,10 @@ import com.sandy.memo.entity.Memo
  */
 class MemoRepository(application: Application) {
     private val memoDao: MemoDao
-    private val memoList: LiveData<List<Memo>>
 
     init {
         val db = AppDatabase.getInstance(application)
         memoDao = db!!.memoDao()
-        memoList = db.memoDao().getAll()
     }
 
     fun insert(memo: Memo) {
@@ -55,9 +54,4 @@ class MemoRepository(application: Application) {
     fun checkIsPassword(id: Int): Boolean {
         return memoDao.checkIsPassword(id)
     }
-
-    fun getWidgetInfo(): LiveData<List<WidgetItem>> {
-        return memoDao.getWidgetInfo()
-    }
-
 }

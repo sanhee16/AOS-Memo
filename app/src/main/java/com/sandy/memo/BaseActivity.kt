@@ -3,14 +3,21 @@ package com.sandy.memo
 import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import com.sandy.memo.widget.WidgetProvider
+
+
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var notificationManager: NotificationManager
@@ -88,5 +95,13 @@ open class BaseActivity : AppCompatActivity() {
 
     fun cancelNotificationAll() {
         notificationManager.cancelAll()
+    }
+
+    fun Context.updateWidget() {
+        val appWidgetManager = AppWidgetManager.getInstance(applicationContext)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(
+            ComponentName(applicationContext, WidgetProvider::class.java)
+        )
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_listview)
     }
 }

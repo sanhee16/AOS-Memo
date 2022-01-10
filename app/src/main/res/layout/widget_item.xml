@@ -7,7 +7,7 @@
     android:padding="@dimen/widget_margin">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/text1"
+        android:id="@+id/text_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/setting_item"
@@ -16,6 +16,6 @@
         android:padding="@dimen/widget_padding"
         android:paddingLeft="6dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFFFF"
+        android:textColor="#000"
         android:textSize="14dp" />
 </LinearLayout>

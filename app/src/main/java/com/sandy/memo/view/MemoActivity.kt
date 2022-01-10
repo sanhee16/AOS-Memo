@@ -1,6 +1,9 @@
 package com.sandy.memo.view
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sandy.memo.BaseActivity
@@ -20,6 +23,7 @@ import com.sandy.memo.viewmodel.BaseViewModel.Companion.SETTING
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_PROGRESS_BAR
 import com.sandy.memo.viewmodel.MemoActivityViewModel
+import com.sandy.memo.widget.WidgetProvider
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MemoActivity : BaseActivity() {
@@ -34,6 +38,7 @@ class MemoActivity : BaseActivity() {
         adapter = MemoListAdapter(listOf<Memo>(), vm)
         initDataBinding()
         observeLiveData()
+        this.updateWidget()
     }
 
     private fun initDataBinding() {
@@ -49,6 +54,7 @@ class MemoActivity : BaseActivity() {
         vm.memoList.observe(this, {
             adapter.setIsEditMode(false)
             adapter.setData(it)
+            this.updateWidget()
         })
         vm.notificationList.observe(this, { list ->
             cancelNotificationAll()

@@ -2,44 +2,36 @@ package com.sandy.memo.widget
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.sandy.memo.R
 import com.sandy.memo.dao.MemoDao
 import com.sandy.memo.data.WidgetItem
-import org.koin.core.component.getScopeName
-import android.appwidget.AppWidgetManager
 import com.sandy.memo.database.AppDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 
-
-class WidgetRemoteViewsFactory(val context: Context) : RemoteViewsService.RemoteViewsFactory {
+class WidgetRemoteViewsFactory(val context: Context) :
+    RemoteViewsService.RemoteViewsFactory {
     var arrayList: ArrayList<WidgetItem> = ArrayList()
 
+    private lateinit var memoDao: MemoDao
 
-    fun setData(arrayList: ArrayList<WidgetItem>) {
-        this.arrayList = arrayList
-    }
-
-
-    fun setData() {
-
+    init {
+        val memoDatabase = AppDatabase.getInstance(context)
+        if (memoDatabase != null) {
+            memoDao = memoDatabase.memoDao()
+        }
     }
 
     override fun onCreate() {
-        Log.v("sandy","onCreate")
-        setData()
     }
 
-    /**
-     * data변경이 일어났을 때 호출됨
-     */
     override fun onDataSetChanged() {
-        Log.v("sandy","onDataSetChanged")
-        setData()
+        val getWidgetList = memoDao.getWidgetInfo()
+        val widgetList = ArrayList<WidgetItem>()
+        getWidgetList.forEach { item ->
+            widgetList.add(WidgetItem(item.id, item.title))
+        }
+        arrayList = widgetList
     }
 
     override fun onDestroy() {
@@ -52,9 +44,11 @@ class WidgetRemoteViewsFactory(val context: Context) : RemoteViewsService.Remote
     override fun getViewAt(position: Int): RemoteViews {
         val widget = RemoteViews(context.packageName, R.layout.widget_item)
         val dataIntent = Intent()
+        widget.setTextViewText(R.id.text_title, arrayList[position].title)
+
         dataIntent.putExtra("id", arrayList[position].id)
         dataIntent.putExtra("title", arrayList[position].title)
-        widget.setOnClickFillInIntent(R.id.text1, dataIntent);
+        widget.setOnClickFillInIntent(R.id.text_title, dataIntent)
         return widget
     }
 
@@ -66,11 +60,11 @@ class WidgetRemoteViewsFactory(val context: Context) : RemoteViewsService.Remote
         return 1
     }
 
-    override fun getItemId(p0: Int): Long {
-        return 0
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
     override fun hasStableIds(): Boolean {
-        return false
+        return true
     }
 }

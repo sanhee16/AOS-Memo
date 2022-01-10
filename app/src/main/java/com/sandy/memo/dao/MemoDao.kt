@@ -50,5 +50,5 @@ interface MemoDao {
     fun checkIsPassword(id: Int): Boolean
 
     @Query("SELECT id,title FROM Memo")
-    fun getWidgetInfo(): LiveData<List<WidgetItem>>
+    fun getWidgetInfo(): List<WidgetItem>
 }

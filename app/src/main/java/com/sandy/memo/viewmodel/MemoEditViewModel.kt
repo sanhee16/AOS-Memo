@@ -36,7 +36,7 @@ class MemoEditViewModel(
         }
         viewEvent(SHOW_TOAST)
         viewEvent(HIDE_KEYBOARD)
-        updateWidget()
+//        updateWidget()
     }
 
     fun getItem(id: Int) {
@@ -89,17 +89,6 @@ class MemoEditViewModel(
         isPassword.value = isPassword.value?.let { !isPassword.value!! }
         CoroutineScope(Dispatchers.IO).launch {
             isPassword.value?.let { memoRepository.updatePassword(memo.id, it) }
-        }
-    }
-
-    private fun updateWidget() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val getWidgetList = memoRepository.getWidgetInfo()
-            val widgetList = ArrayList<WidgetItem>()
-            getWidgetList.value?.forEach { item ->
-                widgetList.add(WidgetItem(item.id, item.title))
-            }
-            viewEvent(WIDGET_UPDATE)
         }
     }
 }
