@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MvvmPattern"
 include ':app'
+include ':opencv'

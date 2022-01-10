@@ -3,6 +3,7 @@ package com.sandy.memo
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.sandy.memo.databinding.ActivityMainBinding
+import com.sandy.memo.view.CameraActivity
 import com.sandy.memo.view.DataShowActivity
 import com.sandy.memo.view.MemoActivity
 
@@ -13,6 +14,7 @@ class MainActivity : BaseActivity() {
         initDataBinding()
         b.btnMoveDataShow.text = "move to data show activity"
         b.btnMoveMemoActivity.text = "move to memo activity"
+        b.btnMoveCameraActivity.text = "move to camera activity"
     }
 
     private fun initDataBinding() {
@@ -26,5 +28,9 @@ class MainActivity : BaseActivity() {
 
     fun moveMemoActivity() {
         startActivity<MemoActivity>()
+    }
+
+    fun moveCamera() {
+        startActivity<CameraActivity>()
     }
 }

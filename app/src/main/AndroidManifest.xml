@@ -37,6 +37,9 @@
         <activity
             android:name=".view.SettingActivity"
             android:theme="@style/Theme.MvvmPattern" />
+        <activity
+            android:name=".view.CameraActivity"
+            android:theme="@style/Theme.MvvmPattern" />
 
         <receiver android:name=".widget.WidgetProvider"
             android:exported="true">
