@@ -9,11 +9,10 @@ import com.sandy.memo.R
 import com.sandy.memo.databinding.ActivityMemoEditPageBinding
 import com.sandy.memo.util.DialogType1
 import com.sandy.memo.util.EnterPassword
-import com.sandy.memo.viewmodel.BaseViewModel.Companion.HIDE_KEYBOARD
+import com.sandy.memo.viewmodel.BaseViewModel.Companion.MEMO_SAVE_EVENT
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SET_PASSWORD
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_DIALOG
 import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_MEMO_LIST
-import com.sandy.memo.viewmodel.BaseViewModel.Companion.SHOW_TOAST
 import com.sandy.memo.viewmodel.MemoEditViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -67,10 +66,8 @@ class MemoEditPageActivity : BaseActivity() {
                             }
                         })
                     }
-                    SHOW_TOAST -> {
+                    MEMO_SAVE_EVENT -> {
                         showToast(this.resources.getString(R.string.save_memo))
-                    }
-                    HIDE_KEYBOARD -> {
                         imm.hideSoftInputFromWindow(b.textContext.windowToken, 0)
                     }
                     SET_PASSWORD -> {

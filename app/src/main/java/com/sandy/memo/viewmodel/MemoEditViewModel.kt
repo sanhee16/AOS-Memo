@@ -1,6 +1,8 @@
 package com.sandy.memo.viewmodel
 
 import android.appwidget.AppWidgetManager
+import android.util.Log
+import androidx.lifecycle.MediatorLiveData
 import com.sandy.memo.Constants
 import com.sandy.memo.MyApplication.Companion.prefs
 import com.sandy.memo.common.mediatorLiveData
@@ -18,8 +20,10 @@ class MemoEditViewModel(
     val title = mutableLiveData("")
     val content = mutableLiveData("")
     var mode = mutableLiveData(false)
-    private var memo: Memo = Memo("", "", getCurrentTime(), false, false)
-    val isSaveButtonEnabled = mediatorLiveData(title) { !title.value.isNullOrEmpty() }
+    private var memo: Memo = Memo("", "", getCurrentTime(), pin = false, isPassword = false)
+    var isSaveButtonEnabled = mediatorLiveData(title, content) {
+        !((memo.title == title.value.toString()) && (memo.content == content.value.toString()))
+    }
     var editEnabled = mediatorLiveData(mode) { !mode.value!! }
     val pinStatus = mutableLiveData(false)
     val isPassword = mutableLiveData(false)
@@ -32,11 +36,10 @@ class MemoEditViewModel(
         memo.isPassword = isPassword.value == true
 
         CoroutineScope(Dispatchers.IO).launch {
-            memoRepository.insert(memo)
+            memo.id = memoRepository.insert(memo).toInt()
         }
-        viewEvent(SHOW_TOAST)
-        viewEvent(HIDE_KEYBOARD)
-//        updateWidget()
+        isSaveButtonEnabled.postValue(false)
+        viewEvent(MEMO_SAVE_EVENT)
     }
 
     fun getItem(id: Int) {
@@ -52,15 +55,13 @@ class MemoEditViewModel(
     }
 
     fun onClickBackBtn() {
-        if (checkChange())
+        if (isSaveButtonEnabled.value == true)
             viewEvent(SHOW_DIALOG)
         else
             viewEvent(SHOW_MEMO_LIST)
     }
 
     fun changeMode() = mode.postValue(!mode.value!!)
-    private fun checkChange() =
-        !((memo.title == title.value.toString()) && (memo.content == content.value.toString()))
 
     fun onClickPin() {
         pinStatus.value?.let {

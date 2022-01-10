@@ -102,7 +102,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_marginEnd="10dp"
             android:background="@drawable/save"
-            android:backgroundTint="@color/buttonColor"
+            android:backgroundTint="@{vm.isSaveButtonEnabled ? @color/buttonEnable : @color/buttonDisable }"
             android:enabled="@{vm.isSaveButtonEnabled}"
             android:onClick="@{()->vm.onClickSaveBtn()}"
             android:visibility="visible"

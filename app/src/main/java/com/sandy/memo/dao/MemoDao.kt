@@ -20,7 +20,7 @@ interface MemoDao {
      * primary key가 일치하면 replace
      */
     @Insert(onConflict = REPLACE)
-    fun insert(todo: Memo)
+    fun insert(todo: Memo) : Long
 
     /**
      * update : primary key 비교해서 찾고, 다른 부분만 update

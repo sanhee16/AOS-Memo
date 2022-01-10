@@ -20,18 +20,15 @@ open class BaseViewModel : ViewModel() {
     companion object {
         const val SHOW_MEMO_LIST = "SHOW_MEMO_LIST"
         const val MAKE_NEW_MEMO = "MAKE_NEW_MEMO"
-        const val MAKE_EDIT_MEMO = "MAKE_EDIT_MEMO"
         const val SHOW_PROGRESS_BAR = "SHOW_PROGRESS_BAR"
         const val HIDE_PROGRESS_BAR = "HIDE_PROGRESS_BAR"
         const val SHOW_DIALOG = "SHOW_DIALOG"
-        const val SHOW_TOAST = "SHOW_TOAST"
-        const val HIDE_KEYBOARD = "HIDE_KEYBOARD"
+        const val MEMO_SAVE_EVENT = "MEMO_SAVE_EVENT"
         const val SET_PASSWORD = "SET_PASSWORD"
         const val CHECK_PASSWORD = "CHECK_PASSWORD"
         const val ALERT_WRONG_PASSWORD = "ALERT_WRONG_PASSWORD"
         const val RIGHT_PASSWORD = "RIGHT_PASSWORD"
         const val SETTING = "SETTING"
-        const val WIDGET_UPDATE = "WIDGET_UPDATE"
     }
 
     fun viewEvent(content: Any) {

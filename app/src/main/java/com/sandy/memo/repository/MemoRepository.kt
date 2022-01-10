@@ -19,8 +19,8 @@ class MemoRepository(application: Application) {
         memoDao = db!!.memoDao()
     }
 
-    fun insert(memo: Memo) {
-        memoDao.insert(memo)
+    fun insert(memo: Memo) : Long {
+        return memoDao.insert(memo)
     }
 
     fun delete(memo: Memo) {
