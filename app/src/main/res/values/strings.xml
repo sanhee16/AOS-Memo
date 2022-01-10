@@ -14,4 +14,5 @@
     <string name="cancel_make_password">cancel creation</string>
     <string name="make_password">create</string>
     <string name="setting_password">set password</string>
+    <string name="widget_title">memo list</string>
 </resources>

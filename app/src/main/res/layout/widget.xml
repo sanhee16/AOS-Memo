@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/setting_item"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_widget_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/notosan_bold"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:paddingLeft="18dp"
+        android:text="@string/widget_title"
+        android:textSize="16dp" />
 
     <ListView
         android:id="@+id/widget_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/widget_padding"
-        android:background="#ffffff" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/widget_list_margin"
+        android:background="#ffffff"
+        android:divider="#FFFFFF"
+        android:dividerHeight="0px" />
 </LinearLayout>
