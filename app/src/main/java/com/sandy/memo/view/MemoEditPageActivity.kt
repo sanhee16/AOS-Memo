@@ -1,5 +1,6 @@
 package com.sandy.memo.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
@@ -69,6 +70,12 @@ class MemoEditPageActivity : BaseActivity() {
                     MEMO_SAVE_EVENT -> {
                         showToast(this.resources.getString(R.string.save_memo))
                         imm.hideSoftInputFromWindow(b.textContext.windowToken, 0)
+                        val inputMethodManager =
+                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(b.textContext.windowToken, 0)
+                        inputMethodManager.hideSoftInputFromWindow(b.textTitle.windowToken, 0)
+                        b.textTitle.clearFocus()
+                        b.textContext.clearFocus()
                     }
                     SET_PASSWORD -> {
                         val enterPassword = EnterPassword(this)

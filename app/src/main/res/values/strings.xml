@@ -15,4 +15,6 @@
     <string name="make_password">create</string>
     <string name="setting_password">set password</string>
     <string name="widget_title">memo list</string>
+    <string name="str_title">title</string>
+    <string name="str_context">context</string>
 </resources>

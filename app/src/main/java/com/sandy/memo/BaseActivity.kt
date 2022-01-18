@@ -18,7 +18,6 @@ import androidx.core.app.NotificationCompat
 import com.sandy.memo.widget.WidgetProvider
 
 
-
 open class BaseActivity : AppCompatActivity() {
     lateinit var notificationManager: NotificationManager
 
@@ -69,7 +68,7 @@ open class BaseActivity : AppCompatActivity() {
             val notificationChannel = NotificationChannel(
                 Constants.PRIMARY_CHANNEL_ID,
                 "TEST NOTIFICATION",
-                NotificationManager.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_LOW
             )
             notificationChannel.enableLights(false)
             notificationChannel.enableVibration(false)
