@@ -2,7 +2,7 @@
 
 ### function
 - add / modify / delete memo
-<img src="images/image1.png"/>
+<img style="width:30%" src="images/image1.png"/>
 
 ### skills
 
