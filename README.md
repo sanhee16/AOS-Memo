@@ -1,12 +1,20 @@
 # mvvm
 
+this project was developed for practice mvvm patterns.
+
+
+## skills
+- android, kotlin
+- mvvm
+- databinding
+- roomDb
+
 ## function
 ### add / modify / delete notes.  
 - add note : press add button.   
 - delete note : long press at the list.  
 - modify note : press the note want to modify.  
 <img style="width:30%" src="images/image3.png"/> <img style="width:30%" src="images/image1.png"/> <img style="width:30%" src="images/image8.png"/>
-
 
 ### pin notes to the status bar.    
 - can set pin in the note page. the notes pinned will not erased until user unset pin.  
@@ -22,11 +30,3 @@
 - readMode = can not modify text.  
 - writeMode = can be modify text.  
 <img style="width:30%" src="images/image1.png"/> <img style="width:30%" src="images/image2.png"/>
-
-### skills
-
-- android studio
-- mvvm
-- kotlin
-- RoomDB
-- databinidng
