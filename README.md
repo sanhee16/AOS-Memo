@@ -21,7 +21,8 @@ can set password at setting page or if you set password firstTime, click passwor
 - change mode
 readMode = can not modify text
 writeMode = can be modify text
-<img style="width:30%" src="images/image1.png"/>  <img style="width:30%" src="images/image2.png"/>
+
+<img style="width:30%" src="images/image1.png"/><img style="width:30%" src="images/image2.png"/>
 
 ### skills
 
