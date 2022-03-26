@@ -1,7 +1,7 @@
 # mvvm
 
 ### function
-- add / modify / delete notes
+- add / modify / delete notes.  
 add note : press add button.   
 delete note : long press at the list.  
 modify note : press the note want to modify.  
