@@ -27,6 +27,6 @@ this project was developed for practice mvvm patterns.
 
 
 ### change mode.  
-- readMode = can not modify text.  
-- writeMode = can be modify text.  
+- readMode = modify text is impossible.  
+- writeMode = modify text is possible.  
 <img style="width:30%" src="images/image1.png"/> <img style="width:30%" src="images/image2.png"/>
